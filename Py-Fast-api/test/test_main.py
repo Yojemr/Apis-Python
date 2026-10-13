@@ -4,6 +4,8 @@ from pymongo.errors import ConnectionFailure, ServerSelectionTimeoutError
 
 # URI de conexión a MongoDB Atlas
 MONGO_URI = os.environ.get("MONGO_URI")
+if not MONGO_URI:
+    raise RuntimeError("Define la variable de entorno MONGO_URI antes de ejecutar este archivo.")
 
 client = MongoClient(
     MONGO_URI,
