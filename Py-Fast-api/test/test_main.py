@@ -1,8 +1,11 @@
 import os
+from pathlib import Path
+from dotenv import load_dotenv
 from pymongo import MongoClient
 from pymongo.errors import ConnectionFailure, ServerSelectionTimeoutError
 
 # URI de conexión a MongoDB Atlas
+load_dotenv(Path(__file__).resolve().parents[1] / ".env")
 MONGO_URI = os.environ.get("MONGO_URI")
 if not MONGO_URI:
     raise RuntimeError("Define la variable de entorno MONGO_URI antes de ejecutar este archivo.")
@@ -38,5 +41,5 @@ except (ConnectionFailure, ServerSelectionTimeoutError) as e:
     print(f"Error al conectar a MongoDB: {e}")
 
 finally:
-    # Cerrar la conexión 
+    # Cerrar la conexión
     client.close()

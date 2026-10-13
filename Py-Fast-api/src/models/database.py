@@ -1,19 +1,24 @@
-from pumongo import MongoCLient
-from pymongo.errors import ConnectionFailure, SrverSelectionTimeoutError
+import os
+from pathlib import Path
 
+from dotenv import load_dotenv
+from pymongo import MongoClient
+from pymongo.errors import ConnectionFailure, ServerSelectionTimeoutError
+
+load_dotenv(Path(__file__).resolve().parents[2] / ".env")
 MONGO_URI = os.environ.get("MONGO_URI")
+if not MONGO_URI:
+    raise RuntimeError("Define MONGO_URI en .env o en las variables de entorno.")
 
-client = MongoClient(MONGO_URI, ServerSelectionTimeoutMS = 3000)
-
+client = MongoClient(MONGO_URI, serverSelectionTimeoutMS=3000, connect=False)
 db = client.database_apprentice
-collection =db.trainee
+collection = db.trainee
 
-try:
-    client.server_info()
-    client.admin.command("ping")
-    print("Conexión exitosa a MongoDB")
-
-except (ConnectionFailure, ServerSelectionTimeoutError) as e:
-    print(f"Error al conectar a MongoDB: [e]")
-finally:
-    client.close()
+if __name__ == "__main__":
+    try:
+        client.admin.command("ping")
+        print("Conexión exitosa a MongoDB")
+    except (ConnectionFailure, ServerSelectionTimeoutError):
+        print("No se pudo conectar a MongoDB. Revisa la conexión y la configuración.")
+    finally:
+        client.close()
