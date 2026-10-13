@@ -1,7 +1,3 @@
-from bson import ObjectId
-from src.models.database import collection
-from src.models.model import TraineeModel, TraineeUpdateModel
-
 def helper_trainee(trainee: dict) -> dict:
     return {
         "id": str(trainee["_id"]),
