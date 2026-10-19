@@ -12,6 +12,10 @@ Requisitos: Python 3.14 e internet para instalar las dependencias.
 1. Ejecutar `Preparar_entorno.cmd` con doble clic.
 2. Copiar `.env.example` como `.env` y establecer `MONGO_URI` con la conexión del entorno de clase.
 3. Para trabajar desde PowerShell, usar `.\.venv\Scripts\python.exe`.
+
+El script crea `.venv` dentro del proyecto. `.env` y `.venv` están excluidos de Git.
+Las variables de entorno existentes tienen prioridad sobre `.env`.
+
 4. Iniciar la API desde la carpeta `Py-Fast-api`:
 
 ```powershell
@@ -37,9 +41,6 @@ Para consultar, actualizar o eliminar se utiliza el identificador `_id`
 de MongoDB convertido a texto (24 caracteres hexadecimales), no el campo
 `document`. Los identificadores inexistentes o inválidos devuelven HTTP 404.
 
-
-El script crea `.venv` dentro del proyecto. `.env` y `.venv` están excluidos de Git.
-Las variables de entorno existentes tienen prioridad sobre `.env`.
 
 ## Comprobaciones locales
 
