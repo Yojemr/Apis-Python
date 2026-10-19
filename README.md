@@ -4,7 +4,7 @@ Proyectos de API en Python desarrollados durante las clases.
 
 ## Proyectos
 
-- [Py-Fast-api](Py-Fast-api/README.md): modelos de aprendices, conexión MongoDB y serialización de documentos. La aplicación y sus rutas siguen en desarrollo.
+- [Py-Fast-api](Py-Fast-api/README.md): API de gestión de aprendices con FastAPI y MongoDB; rutas para crear, listar, consultar, actualizar y eliminar.
 
 ## Desarrollo
 
