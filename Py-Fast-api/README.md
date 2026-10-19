@@ -16,11 +16,22 @@ Requisitos: Python 3.14 e internet para instalar las dependencias.
 El script crea `.venv` dentro del proyecto. `.env` y `.venv` están excluidos de Git.
 Las variables de entorno existentes tienen prioridad sobre `.env`.
 
-4. Iniciar la API desde la carpeta `Py-Fast-api`:
+4. Iniciar la API con doble clic en `INICIAR_API.cmd` dentro de
+   `Py-Fast-api`. El lanzador selecciona el directorio y el Python del proyecto.
+
+Como alternativa, desde la carpeta `Py-Fast-api` ejecutar:
 
 ```powershell
 .\.venv\Scripts\python.exe -m uvicorn src.main:app --reload
 ```
+
+**Importante:** no ejecutar `uvicorn main:app` desde la carpeta raíz:
+`main.py` se encuentra dentro de `src`, por lo que el módulo es `src.main`.
+Si se ejecuta desde la carpeta raíz del repositorio `Apis-Python`, primero
+entrar a `Py-Fast-api` o utilizar el lanzador.
+Si aparece `Could not import module` comprueba también que `.env`
+contenga `MONGO_URI`: si no existe, la carga de la aplicación lanza un
+`RuntimeError` desde `src/models/database.py`.
 
 Abrir http://127.0.0.1:8000/docs para consultar la documentación de FastAPI.
 La ruta `POST /trainee` funciona, pero no aparece en Swagger porque

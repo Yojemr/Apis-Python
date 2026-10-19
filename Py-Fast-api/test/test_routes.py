@@ -3,6 +3,7 @@ import unittest
 from unittest.mock import patch
 
 from fastapi.testclient import TestClient
+from uvicorn.importer import import_from_string
 
 with (
     patch.dict(os.environ, {"MONGO_URI": "mongodb://127.0.0.1:27017"}),
@@ -15,6 +16,9 @@ with (
 class TraineeRoutesTests(unittest.TestCase):
     def setUp(self):
         self.client = TestClient(app)
+
+    def test_uvicorn_asgi_module_path(self):
+        self.assertIs(import_from_string("src.main:app"), app)
 
     def test_crud_routes_are_registered_only_once(self):
         endpoints = (
