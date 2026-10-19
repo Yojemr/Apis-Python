@@ -1,4 +1,4 @@
-from fastapi import FastAPI, status
+from fastapi import FastAPI, HTTPException, status
 
 from src.models.model import TraineeModel
 from src.templates.templates import router as trainee_router
@@ -9,6 +9,8 @@ app = FastAPI(
     description="API para gestionar los datos de los aprendices",
     version="1.0.0",
 )
+
+app.include_router(trainee_router)
 
 
 @app.get("/")
