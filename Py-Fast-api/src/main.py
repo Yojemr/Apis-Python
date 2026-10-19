@@ -30,7 +30,7 @@ def create_trainee_api(trainee: TraineeModel):
     return create_trainee(trainee)
 
 
-#obtener la lista de aprendices
+# obtener la lista de aprendices
 @app.get("/trainees", response_description="Listar todos los aprendices")
 def get_all_trainee_api():
     return get_all_trainees()
@@ -46,7 +46,7 @@ def get_trainee_by_id_api(id: str):
     return trainee
 
 
-#actualizar datos de un aprendiz por su ID
+# actualizar datos de un aprendiz por su ID
 @app.put(
     "/trainee/{id}", response_description="Actualizar datos de un aprendiz por su ID"
 )
@@ -59,7 +59,7 @@ def update_trainee_by_id_api(id: str, trainee: TraineeUpdateModel):
     return trainee
 
 
-#Eliminar un aprendiz por su ID
+# Eliminar un aprendiz por su ID
 @app.delete("/trainee/{id}", response_description="Eliminar un aprendiz por su ID")
 def delete_trainee_by_id_api(id: str):
     trainee = delete_trainee(id)
