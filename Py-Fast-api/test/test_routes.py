@@ -29,7 +29,8 @@ class TraineeRoutesTests(unittest.TestCase):
                 matches = [
                     route
                     for route in app.routes
-                    if route.path == path and method in (route.methods or set())
+                    if getattr(route, "path", None) == path
+                    and method in (getattr(route, "methods", None) or set())
                 ]
                 self.assertEqual(len(matches), 1)
 
