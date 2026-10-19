@@ -47,7 +47,9 @@ def get_trainee_by_id_api(id: str):
 
 
 #actualizar datos de un aprendiz por su ID
-@app.put("/trainee/{id}", response_description="Actualizar datos de un aprendiz por su ID")
+@app.put(
+    "/trainee/{id}", response_description="Actualizar datos de un aprendiz por su ID"
+)
 def update_trainee_by_id_api(id: str, trainee: TraineeUpdateModel):
     trainee = update_trainee(id, trainee)
     if not trainee:

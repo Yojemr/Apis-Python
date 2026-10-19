@@ -98,18 +98,14 @@ class TraineeRoutesTests(unittest.TestCase):
             "src.main.update_trainee",
             return_value={"id": "abc", "firstname": "Lina"},
         ) as update:
-            response = self.client.put(
-                "/trainee/abc", json={"firstname": "Lina"}
-            )
+            response = self.client.put("/trainee/abc", json={"firstname": "Lina"})
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.json()["firstname"], "Lina")
         self.assertEqual(update.call_args.args[1].firstname, "Lina")
 
     def test_update_missing_trainee(self):
         with patch("src.main.update_trainee", return_value=None):
-            response = self.client.put(
-                "/trainee/invalid", json={"firstname": "Lina"}
-            )
+            response = self.client.put("/trainee/invalid", json={"firstname": "Lina"})
         self.assertEqual(response.status_code, 404)
         self.assertEqual(response.json()["detail"], "Aprendiz no encontrado")
 

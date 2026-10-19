@@ -90,9 +90,7 @@ class ControllerTests(unittest.TestCase):
         with patch("src.views.controllers.collection") as collection:
             collection.find_one.return_value = trainee
 
-            result = update_trainee(
-                str(oid), TraineeUpdateModel(firstname="Lina")
-            )
+            result = update_trainee(str(oid), TraineeUpdateModel(firstname="Lina"))
 
             collection.update_one.assert_called_once_with(
                 {"_id": oid}, {"$set": {"firstname": "Lina"}}
