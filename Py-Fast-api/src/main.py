@@ -24,7 +24,7 @@ async def root():
     return {"message": "Bienvenido a la API de gestión de datos de los aprendices"}
 
 
-@app.post("/trainee", status_code=status.HTTP_201_CREATED, include_in_schema=False)
+@app.post("/trainee", status_code=status.HTTP_201_CREATED, include_in_schema=True)
 def create_trainee_api(trainee: TraineeModel):
     # Se conserva la ruta singular para compatibilidad con las llamadas existentes.
     return create_trainee(trainee)

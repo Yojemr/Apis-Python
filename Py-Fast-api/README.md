@@ -34,8 +34,8 @@ contenga `MONGO_URI`: si no existe, la carga de la aplicación lanza un
 `RuntimeError` desde `src/models/database.py`.
 
 Abrir http://127.0.0.1:8000/docs para consultar la documentación de FastAPI.
-La ruta `POST /trainee` funciona, pero no aparece en Swagger porque
-`main.py` la define con `include_in_schema=False`.
+La ruta `POST /trainee` está disponible en Swagger para crear aprendices.
+Selecciona `POST /trainee` y utiliza `Try it out` para enviar los datos.
 
 ## Rutas implementadas
 

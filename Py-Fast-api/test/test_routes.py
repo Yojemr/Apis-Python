@@ -43,6 +43,17 @@ class TraineeRoutesTests(unittest.TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertIn("Bienvenido", response.json()["message"])
 
+    def test_create_trainee_visible_in_openapi(self):
+        response = self.client.get("/openapi.json")
+        self.assertEqual(response.status_code, 200)
+        self.assertIn("post", response.json()["paths"]["/trainee"])
+        self.assertEqual(
+            response.json()["paths"]["/trainee"]["post"]["responses"]["201"][
+                "description"
+            ],
+            "Successful Response",
+        )
+
     def test_create_trainee(self):
         payload = {
             "document": "123",
