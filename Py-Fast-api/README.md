@@ -25,8 +25,10 @@ Como alternativa, desde la carpeta `Py-Fast-api` ejecutar:
 .\.venv\Scripts\python.exe -m uvicorn src.main:app --reload
 ```
 
-**Importante:** no ejecutar `uvicorn main:app` desde la carpeta raíz:
-`main.py` se encuentra dentro de `src`, por lo que el módulo es `src.main`.
+**Importante:** la aplicación principal está en `src/main.py` y su módulo es
+`src.main`. Desde esta carpeta se puede iniciar con `uvicorn src.main:app` o
+con el punto de entrada `main.py`, compatible con el comando actual de Render:
+`uvicorn main:app --host 0.0.0.0 --port $PORT`.
 Si se ejecuta desde la carpeta raíz del repositorio `Apis-Python`, primero
 entrar a `Py-Fast-api` o utilizar el lanzador.
 Si aparece `Could not import module` comprueba también que `.env`
